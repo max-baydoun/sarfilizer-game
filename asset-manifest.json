@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/sarfilizer_game/static/css/main.1f819a87.css",
+    "main.js": "/sarfilizer_game/static/js/main.aea997b0.js",
+    "static/js/453.629b6867.chunk.js": "/sarfilizer_game/static/js/453.629b6867.chunk.js",
+    "static/media/KFGQPC Uthmanic Script HAFS Regular.otf": "/sarfilizer_game/static/media/KFGQPC Uthmanic Script HAFS Regular.972728a4d15979c86c1c.otf",
+    "index.html": "/sarfilizer_game/index.html",
+    "main.1f819a87.css.map": "/sarfilizer_game/static/css/main.1f819a87.css.map",
+    "main.aea997b0.js.map": "/sarfilizer_game/static/js/main.aea997b0.js.map",
+    "453.629b6867.chunk.js.map": "/sarfilizer_game/static/js/453.629b6867.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1f819a87.css",
+    "static/js/main.aea997b0.js"
+  ]
+}
