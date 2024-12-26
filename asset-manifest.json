@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/sarfilizer-game/static/css/main.7871e48c.css",
-    "main.js": "/sarfilizer-game/static/js/main.2b7fcd91.js",
+    "main.css": "/sarfilizer-game/static/css/main.c8a5410d.css",
+    "main.js": "/sarfilizer-game/static/js/main.4809b498.js",
     "static/js/453.629b6867.chunk.js": "/sarfilizer-game/static/js/453.629b6867.chunk.js",
     "static/media/KFGQPC Uthmanic Script HAFS Regular.otf": "/sarfilizer-game/static/media/KFGQPC Uthmanic Script HAFS Regular.972728a4d15979c86c1c.otf",
     "index.html": "/sarfilizer-game/index.html",
-    "main.7871e48c.css.map": "/sarfilizer-game/static/css/main.7871e48c.css.map",
-    "main.2b7fcd91.js.map": "/sarfilizer-game/static/js/main.2b7fcd91.js.map",
+    "main.c8a5410d.css.map": "/sarfilizer-game/static/css/main.c8a5410d.css.map",
+    "main.4809b498.js.map": "/sarfilizer-game/static/js/main.4809b498.js.map",
     "453.629b6867.chunk.js.map": "/sarfilizer-game/static/js/453.629b6867.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7871e48c.css",
-    "static/js/main.2b7fcd91.js"
+    "static/css/main.c8a5410d.css",
+    "static/js/main.4809b498.js"
   ]
 }
