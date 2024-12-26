@@ -1,0 +1,20 @@
+#wordBox {
+    margin: 10px auto 10px auto;
+}
+
+#word {
+    font-family: "Uthmani";
+    font-size: 1000%;
+    background-color: rgb(255, 255, 255);
+    border: solid 3px black;
+    border-radius: 50px;
+    width: fit-content;
+    height: fit-content;
+    margin: 50px auto 30px auto;
+    padding: 5px;
+}
+
+@font-face {
+    font-family: "Uthmani";
+    src: url("../fonts/KFGQPC Uthmanic Script HAFS Regular.otf")
+}
