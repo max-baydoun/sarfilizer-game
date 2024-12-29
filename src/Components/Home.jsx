@@ -35,12 +35,12 @@ function Home() {
     }
 
     return (
-        <Box id="containedMain" sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '10px'}}>
-            <Grid2 columns={12} rowGap={1} sx={{flexDirection: 'column', justifyContent: "center", alignItems: "center", width: '800px', border: '5px solid black', padding: '10px', borderRadius: '10px', backgroundColor: 'rgb(150, 150, 150)'}}>
+        <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '10px'}}>
+            <Grid2 columns={12} rowGap={1} sx={{flexDirection: 'column', justifyContent: "center", alignItems: "center", width: '800px', border: '5px solid black', padding: '10px', borderRadius: '10px', backgroundColor: 'black'}}>
                 <Grid2 size={12} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px'}}>
                     <RandomizeWord />
                 </Grid2>
-                <Grid2 size={12} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <Grid2 size={12} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px'}}>
                     <ArabicWord word={randomWord.WORD} />
                 </Grid2>
                 <Grid2 size={12} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>

@@ -1,20 +1,28 @@
-import React from 'react';
-import { Box, Typography } from '@mui/material';
-import '../index.css'
+import React from "react";
+import { Typography } from "@mui/material";
+import "../index.css";
 
-function ArabicWord({word}) {
-
+function ArabicWord({ word }) {
     return (
-        <Box sx={{
-            backgroundColor: 'white',
-            border: 'solid 3px black',
-            borderRadius: '50px',
-            height: 'fit-content',
-            margin: '30px auto',
-        }}> 
-            <Typography sx={{padding: '10px 40px', fontSize: '150px', fontFamily: 'Uthmani'}}>{word}</Typography>
-        </Box>
-    )
+        <Typography
+            sx={{
+                fontSize: "clamp(7rem, 11vw, 15rem)",
+                fontFamily: "Uthmani",
+                whiteSpace: "nowrap",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "white",
+            }}
+        >
+            {word}
+        </Typography>
+    );
+}
+{
+    /* <Typography sx={{ padding: "10px 40px", fontSize: "clamp(2rem, 10vw, 10rem)", fontFamily: "Uthmani", whiteSpace: "nowrap" }}>{word}</Typography> */
 }
 
-export default ArabicWord
+export default ArabicWord;
