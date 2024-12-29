@@ -3,21 +3,24 @@ import Select from "@mui/material/Select";
 import { Box, FormControl, InputLabel, MenuItem, Tooltip } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
-import { green, grey, red } from "@mui/material/colors";
+import { green, grey } from "@mui/material/colors";
 import "../animateRotation.css";
 
 const arabicLetters = ["ء", "ب", "ت", "ث", "ج", "ح", "خ", "د", "ذ", "ر", "ز", "س", "ش", "ص", "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ك", "ل", "م", "ن", "ه", "و", "ي"];
 const labels = ["ل", "ل", "ع", "ف"];
 
-function RootsDropdown({ numOfRoots, correctRoots, toggleNewWord }) {
+function RootsDropdown({ numOfRoots, correctRoots, toggleNewWord, setUserCorrect }) {
     const [currentRoots, setCurrentRoots] = useState(Array(numOfRoots).fill("-"));
     const [color, setColor] = useState(grey[900]);
     const [rotate, setRotate] = useState(false);
 
     useEffect(() => {
         const isCorrect = currentRoots.join() === correctRoots.join();
-        setColor(isCorrect ? green["800"] : red["A400"]);
+        setColor(isCorrect ? green["800"] : "#E63946");
         setRotate(isCorrect);
+        setUserCorrect((prev) => {
+            return [isCorrect, prev[1], prev[2]];
+        });
     }, [currentRoots]);
 
     useEffect(() => {
@@ -25,12 +28,29 @@ function RootsDropdown({ numOfRoots, correctRoots, toggleNewWord }) {
     }, [toggleNewWord]);
 
     const handleSelectedRoot = (index, letter) => {
-        console.log(index, letter);
+        if (letter === undefined) return;
         const updatedRoots = [...currentRoots];
         updatedRoots[currentRoots.length - index] = letter;
         setCurrentRoots(updatedRoots);
+        console.log(index, letter, updatedRoots);
     };
 
+    const cellStyle = {
+        ":hover": {
+            color: "white",
+            backgroundColor: "black",
+        },
+        borderRadius: "12px",
+        backgroundColor: "#D3D3D3",
+        textAlign: "center",
+        fontSize: "50px",
+        fontStyle: "Urbanist",
+        margin: "5px",
+        transition: "background-color 0.2s ease-out, color 0.2s ease-out",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    };
     return (
         <Box
             sx={{
@@ -61,18 +81,27 @@ function RootsDropdown({ numOfRoots, correctRoots, toggleNewWord }) {
                     (label, i) =>
                         i >= (numOfRoots === 4 ? 0 : 1) && (
                             <Grid2 size={12 / (numOfRoots + 1)} key={i} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <FormControl key={i} sx={{}}>
+                                <FormControl key={i}>
                                     <InputLabel sx={{ fontSize: "40px", fontFamily: "Uthmani" }}>{label}</InputLabel>
                                     <Select
-                                        value={currentRoots[currentRoots.length - i]}
                                         onChange={(e) => handleSelectedRoot(i, e.target.value)}
-                                        sx={{ borderRadius: "10px", backgroundColor: "white", fontSize: "50px", textAlign: "center", fontFamily: "Uthmani", width: "200px" }}
+                                        value={currentRoots[currentRoots.length - i]}
+                                        sx={{
+                                            borderRadius: "20px",
+                                            fontWeight: "600",
+                                            backgroundColor: "white",
+                                            fontSize: "50px",
+                                            textAlign: "center",
+                                            fontFamily: "Uthmani",
+                                            width: "200px",
+                                            flexDirection: "row",
+                                        }}
                                     >
-                                        <MenuItem sx={{ justifyContent: "center", fontSize: "50px", fontFamily: "Urbanist" }} value={"-"}>
+                                        <MenuItem sx={{ ...cellStyle, fontFamily: "Urbanist" }} value={"-"}>
                                             -
                                         </MenuItem>
                                         {arabicLetters.map((letter, index) => (
-                                            <MenuItem key={index} sx={{ justifyContent: "center", fontSize: "50px", fontFamily: "Uthmani" }} value={letter}>
+                                            <MenuItem key={index} sx={{ ...cellStyle, fontFamily: "Uthmani" }} value={letter}>
                                                 {letter}
                                             </MenuItem>
                                         ))}

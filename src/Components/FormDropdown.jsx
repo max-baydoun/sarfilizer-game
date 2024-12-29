@@ -2,7 +2,7 @@ import { Box, FormControl, InputLabel, MenuItem, Select, Tooltip } from "@mui/ma
 import Grid2 from "@mui/material/Unstable_Grid2";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import { useEffect, useState } from "react";
-import { green, grey, red } from "@mui/material/colors";
+import { green, grey } from "@mui/material/colors";
 import "../animateRotation.css";
 
 const romanNumerals = [
@@ -19,19 +19,20 @@ const romanNumerals = [
     "XI",
     "XII",
 ];
-function FormDropdown({ correctForm, toggleNewWord }) {
-    const [currentForm, setCurrentForm] = useState("Select");
+function FormDropdown({ correctForm, toggleNewWord, setUserCorrect }) {
+    const [currentForm, setCurrentForm] = useState("Form");
     const [color, setColor] = useState(grey[900]);
     const [rotate, setRotate] = useState(false);
 
     useEffect(() => {
         const isCorrect = currentForm.split(" ")[0] === correctForm;
-        setColor(isCorrect ? green["800"] : red["A400"]);
+        setColor(isCorrect ? green["800"] : "#E63946");
         setRotate(isCorrect);
+        setUserCorrect(prev => {return [prev[0], isCorrect, prev[2]]})
     }, [currentForm]);
 
     useEffect(() => {
-        setCurrentForm("Select");
+        setCurrentForm("Form");
     }, [toggleNewWord]);
 
     return (
@@ -59,14 +60,13 @@ function FormDropdown({ correctForm, toggleNewWord }) {
                 }}
             >
                 <FormControl sx={{ margin: "10px", width: "100%" }}>
-                    <InputLabel sx={{ fontSize: "20px" }}>Form</InputLabel>
                     <Select
                         value={currentForm}
                         onChange={(e) => setCurrentForm(e.target.value)}
-                        sx={{ fontFamily: currentForm === "Select" ? "Urbanist" : "Uthmani", backgroundColor: "white", fontSize: "40px", textAlign: "center" }}
+                        sx={{ borderRadius: '20px', fontWeight: '600', fontFamily: currentForm === "Form" ? "Urbanist" : "Uthmani", backgroundColor: "white", fontSize: "40px", textAlign: "center" }}
                     >
-                        <MenuItem sx={{ fontFamily: "Urbanist", justifyContent: "center", fontSize: "30px" }} value={"Select"}>
-                            Select
+                        <MenuItem sx={{ fontFamily: "Urbanist", justifyContent: "center", fontSize: "30px" }} value={"Form"}>
+                            Form
                         </MenuItem>
 
                         {romanNumerals.map((numeral, index) => (

@@ -1,9 +1,9 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, Tooltip } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import React, { useEffect, useState } from "react";
-import { green, grey, red } from "@mui/material/colors";
+import { green, grey } from "@mui/material/colors";
 import Groups3Icon from "@mui/icons-material/Groups3";
-import '../animateRotation.css'
+import "../animateRotation.css";
 
 const labels = [
     "Active past Tense (فعل ماض معلوم",
@@ -16,19 +16,22 @@ const labels = [
     "Command (أمر",
 ];
 
-function TypeDropdown({ correctWordType, toggleNewWord }) {
-    const [currentWordType, setCurrentWordType] = useState(" ");
+function TypeDropdown({ correctWordType, toggleNewWord, setUserCorrect }) {
+    const [currentWordType, setCurrentWordType] = useState("Type");
     const [color, setColor] = useState(grey[900]);
     const [rotate, setRotate] = useState(false);
 
     useEffect(() => {
         const isCorrect = currentWordType.substring(0, currentWordType.indexOf("(")).trim() === correctWordType;
-        setColor(isCorrect ? green["800"] : red["A400"]);
+        setColor(isCorrect ? green["800"] : "#E63946");
         setRotate(isCorrect);
+        setUserCorrect((prev) => {
+            return [prev[0], prev[1], isCorrect];
+        });
     }, [currentWordType]);
 
     useEffect(() => {
-        setCurrentWordType("Select");
+        setCurrentWordType("Type");
     }, [toggleNewWord]);
 
     return (
@@ -58,14 +61,20 @@ function TypeDropdown({ correctWordType, toggleNewWord }) {
                 }}
             >
                 <FormControl sx={{ margin: "10px", width: "100%" }}>
-                    <InputLabel sx={{ fontSize: "20px" }}>Type</InputLabel>
                     <Select
                         value={currentWordType}
                         onChange={(e) => setCurrentWordType(e.target.value)}
-                        sx={{ fontFamily: currentWordType === "Select" ? "Urbanist" : "Uthmani", backgroundColor: "white", fontSize: "40px", textAlign: "center" }}
+                        sx={{
+                            borderRadius: "20px",
+                            fontWeight: "600",
+                            fontFamily: currentWordType === "Type" ? "Urbanist" : "Uthmani",
+                            backgroundColor: "white",
+                            fontSize: "40px",
+                            textAlign: "center",
+                        }}
                     >
-                        <MenuItem sx={{ fontFamily: "Uthmani", justifyContent: "center", fontSize: "30px" }} value={"Select"}>
-                            Select
+                        <MenuItem sx={{ fontFamily: "Uthmani", justifyContent: "center", fontSize: "30px" }} value={"Type"}>
+                            Type
                         </MenuItem>
                         {labels.map((label, index) => (
                             <MenuItem sx={{ fontSize: "30px", fontFamily: "Uthmani", justifyContent: "center" }} key={index} value={label}>
@@ -78,7 +87,7 @@ function TypeDropdown({ correctWordType, toggleNewWord }) {
             <Grid2 columns={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px" }}>
                 <Tooltip title="Correct Word Type?">
                     <Groups3Icon
-                        className={ rotate ? "rotate": "none"}
+                        className={rotate ? "rotate" : "none"}
                         sx={{
                             color: color,
                             fontSize: "50px",
