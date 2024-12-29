@@ -5,7 +5,7 @@ function App() {
     
   return (
     <Box>
-        <GlobalStyles styles={{body: {margin: '0px', backgroundColor: 'rgb(208, 208, 208)'}}}/>
+        <GlobalStyles styles={{body: {margin: '0px', backgroundColor: '#121212'}}}/>
         <Home />
     </Box>
   );

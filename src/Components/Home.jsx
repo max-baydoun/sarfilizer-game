@@ -36,7 +36,7 @@ function Home() {
 
     return (
         <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '10px'}}>
-            <Grid2 columns={12} rowGap={1} sx={{flexDirection: 'column', justifyContent: "center", alignItems: "center", width: '800px', border: '5px solid black', padding: '10px', borderRadius: '10px', backgroundColor: 'black'}}>
+            <Grid2 columns={12} rowGap={1} sx={{flexDirection: 'column', justifyContent: "center", alignItems: "center", width: '800px', border: '2px solid black', padding: '10px', borderRadius: '10px', background: "linear-gradient(to top, #1a1a1a, #000000)"}}>
                 <Grid2 size={12} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px'}}>
                     <RandomizeWord />
                 </Grid2>

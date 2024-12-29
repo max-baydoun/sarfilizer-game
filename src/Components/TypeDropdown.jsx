@@ -3,6 +3,7 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import React, { useEffect, useState } from "react";
 import { green, grey, red } from "@mui/material/colors";
 import Groups3Icon from "@mui/icons-material/Groups3";
+import '../animateRotation.css'
 
 const labels = [
     "Active past Tense (فعل ماض معلوم",
@@ -18,10 +19,12 @@ const labels = [
 function TypeDropdown({ correctWordType, toggleNewWord }) {
     const [currentWordType, setCurrentWordType] = useState(" ");
     const [color, setColor] = useState(grey[900]);
+    const [rotate, setRotate] = useState(false);
 
     useEffect(() => {
-        console.log(currentWordType.substring(0, currentWordType.indexOf("(")).trim(), '|', correctWordType)
-        setColor(currentWordType.substring(0, currentWordType.indexOf("(")).trim() === correctWordType ? green["800"] : red["A400"]);
+        const isCorrect = currentWordType.substring(0, currentWordType.indexOf("(")).trim() === correctWordType;
+        setColor(isCorrect ? green["800"] : red["A400"]);
+        setRotate(isCorrect);
     }, [currentWordType]);
 
     useEffect(() => {
@@ -74,7 +77,14 @@ function TypeDropdown({ correctWordType, toggleNewWord }) {
             </Grid2>
             <Grid2 columns={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px" }}>
                 <Tooltip title="Correct Word Type?">
-                    <Groups3Icon sx={{ color: color, fontSize: "50px" }} />
+                    <Groups3Icon
+                        className={ rotate ? "rotate": "none"}
+                        sx={{
+                            color: color,
+                            fontSize: "50px",
+                            transition: "color 0.5s ease",
+                        }}
+                    />
                 </Tooltip>
             </Grid2>
         </Box>

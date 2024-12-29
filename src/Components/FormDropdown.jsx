@@ -3,6 +3,7 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 import { useEffect, useState } from "react";
 import { green, grey, red } from "@mui/material/colors";
+import "../animateRotation.css";
 
 const romanNumerals = [
     "I - فَعَلَ",
@@ -21,9 +22,12 @@ const romanNumerals = [
 function FormDropdown({ correctForm, toggleNewWord }) {
     const [currentForm, setCurrentForm] = useState("Select");
     const [color, setColor] = useState(grey[900]);
+    const [rotate, setRotate] = useState(false);
 
     useEffect(() => {
-        setColor(currentForm.split("")[0] === correctForm ? green["800"] : red["A400"]);
+        const isCorrect = currentForm.split(" ")[0] === correctForm;
+        setColor(isCorrect ? green["800"] : red["A400"]);
+        setRotate(isCorrect);
     }, [currentForm]);
 
     useEffect(() => {
@@ -75,7 +79,14 @@ function FormDropdown({ correctForm, toggleNewWord }) {
             </Grid2>
             <Grid2 columns={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px" }}>
                 <Tooltip title="Correct Form?">
-                    <Diversity2Icon sx={{ color: color, fontSize: "50px" }} />
+                    <Diversity2Icon
+                        className={rotate ? "rotate" : "none"}
+                        sx={{
+                            color: color,
+                            fontSize: "50px",
+                            transition: "color 0.5s ease",
+                        }}
+                    />
                 </Tooltip>
             </Grid2>
         </Box>

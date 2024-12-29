@@ -4,6 +4,7 @@ import { Box, FormControl, InputLabel, MenuItem, Tooltip } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import WaterDropIcon from "@mui/icons-material/WaterDrop";
 import { green, grey, red } from "@mui/material/colors";
+import "../animateRotation.css";
 
 const arabicLetters = ["ء", "ب", "ت", "ث", "ج", "ح", "خ", "د", "ذ", "ر", "ز", "س", "ش", "ص", "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ك", "ل", "م", "ن", "ه", "و", "ي"];
 const labels = ["ل", "ل", "ع", "ف"];
@@ -11,9 +12,12 @@ const labels = ["ل", "ل", "ع", "ف"];
 function RootsDropdown({ numOfRoots, correctRoots, toggleNewWord }) {
     const [currentRoots, setCurrentRoots] = useState(Array(numOfRoots).fill("-"));
     const [color, setColor] = useState(grey[900]);
+    const [rotate, setRotate] = useState(false);
 
     useEffect(() => {
-        setColor(currentRoots.join() === correctRoots.join() ? green["800"] : red["A400"]);
+        const isCorrect = currentRoots.join() === correctRoots.join();
+        setColor(isCorrect ? green["800"] : red["A400"]);
+        setRotate(isCorrect);
     }, [currentRoots]);
 
     useEffect(() => {
@@ -21,7 +25,7 @@ function RootsDropdown({ numOfRoots, correctRoots, toggleNewWord }) {
     }, [toggleNewWord]);
 
     const handleSelectedRoot = (index, letter) => {
-        console.log(index, letter)
+        console.log(index, letter);
         const updatedRoots = [...currentRoots];
         updatedRoots[currentRoots.length - index] = letter;
         setCurrentRoots(updatedRoots);
@@ -80,7 +84,14 @@ function RootsDropdown({ numOfRoots, correctRoots, toggleNewWord }) {
             </Grid2>
             <Grid2 columns={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "10px" }}>
                 <Tooltip title="Correct Roots?">
-                    <WaterDropIcon sx={{ color: color, fontSize: "50px" }} />
+                    <WaterDropIcon
+                        className={rotate ? "rotate" : "none"}
+                        sx={{
+                            color: color,
+                            fontSize: "50px",
+                            transition: "color 0.5s ease",
+                        }}
+                    />
                 </Tooltip>
             </Grid2>
         </Box>
