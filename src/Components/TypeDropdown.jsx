@@ -10,7 +10,7 @@ const labels = [
     "Active participle (اسم فاعل",
     "Passive past Tense (فعل ماض مبني للمجهول",
     "Passive present Tense (فعل مضارع مبني للمجهول",
-    "Passive participle(اسم مفعول",
+    "Passive participle (اسم مفعول",
     "Verbal noun (مصدر",
     "Command (أمر",
 ];
@@ -20,6 +20,7 @@ function TypeDropdown({ correctWordType, toggleNewWord }) {
     const [color, setColor] = useState(grey[900]);
 
     useEffect(() => {
+        console.log(currentWordType.substring(0, currentWordType.indexOf("(")).trim(), '|', correctWordType)
         setColor(currentWordType.substring(0, currentWordType.indexOf("(")).trim() === correctWordType ? green["800"] : red["A400"]);
     }, [currentWordType]);
 

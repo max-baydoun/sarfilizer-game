@@ -21,8 +21,5 @@ function ArabicWord({ word }) {
         </Typography>
     );
 }
-{
-    /* <Typography sx={{ padding: "10px 40px", fontSize: "clamp(2rem, 10vw, 10rem)", fontFamily: "Uthmani", whiteSpace: "nowrap" }}>{word}</Typography> */
-}
 
 export default ArabicWord;
